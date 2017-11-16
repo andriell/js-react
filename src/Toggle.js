@@ -7,22 +7,22 @@ import React from 'react';
 class Toggle extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isToggleOn: true};
-
-        // Это нужно что бы в handleClick this указывало на то же this что и здесь
+        this.state = {isToggleOn: true, count: 0};
+        // Это нужно сделать что бы в handleClick this указывало на это this
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick(count) {
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
+            isToggleOn: !prevState.isToggleOn,
+            count: count,
         }));
-    }
+    };
 
     render() {
         return (
-            <button onClick={this.handleClick}>
-                {this.state.isToggleOn ? 'ON' : 'OFF'}
+            <button onClick={(e) => {this.handleClick(this.state.count + 1)}}>
+                {this.state.isToggleOn ? 'ON' : 'OFF'} {this.state.count}
             </button>
         );
     }
