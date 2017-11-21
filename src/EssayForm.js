@@ -9,16 +9,20 @@ class EssayForm extends React.Component {
         super(props);
         this.state = {
             value: 'Please write an essay about your favorite DOM element.',
-            select: '',
+            select: 'A',
             items: [1, 2, 3],
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({[name]: value});
     }
 
     handleSubmit(event) {
@@ -44,9 +48,7 @@ class EssayForm extends React.Component {
                         <tr>
                             <td>Type</td>
                             <td>
-                                <select onChange={event => {
-                                    this.setState({select: event.target.value});
-                                }}>
+                                <select name="select" onChange={this.handleInputChange}>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                 </select>
@@ -55,7 +57,7 @@ class EssayForm extends React.Component {
                         <tr>
                             <td>Name:</td>
                             <td>
-                                <textarea value={this.state.value} onChange={this.handleChange} style={{width: '400px', height: '100px'}} />
+                                <textarea name="value" value={this.state.value} onChange={this.handleInputChange} style={{width: '400px', height: '100px'}} />
                             </td>
                         </tr>
                         <tr>
