@@ -42,10 +42,6 @@ class EssayForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <table>
                         <tr>
-                            <td>Value:</td>
-                            <td>{this.state.value}</td>
-                        </tr>
-                        <tr>
                             <td>Type</td>
                             <td>
                                 <select name="select" onChange={this.handleInputChange}>
@@ -59,6 +55,10 @@ class EssayForm extends React.Component {
                             <td>
                                 <textarea name="value" value={this.state.value} onChange={this.handleInputChange} style={{width: '400px', height: '100px'}} />
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Value:</td>
+                            <td>{this.state.value}</td>
                         </tr>
                         <tr>
                             <td colspan="2">
