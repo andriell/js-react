@@ -32,13 +32,11 @@ class EssayForm extends React.Component {
     }
 
     render() {
-        let items = [];
-        for (let item of this.state.items) {
-            items.push(<div>{item}</div>);
-        }
         return (
             <div>
-                {items}
+                {this.state.items.map(item => {
+                    return <div>{item}</div>;
+                })}
                 <form onSubmit={this.handleSubmit}>
                     <table>
                         <tr>
