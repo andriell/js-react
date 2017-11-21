@@ -4,6 +4,7 @@ import './App.css';
 import Welcome from './Welcome.js';
 import Clock from './Clock.js';
 import Toggle from './Toggle.js';
+import EssayForm from './EssayForm.js';
 
 class App extends Component {
     render() {
@@ -20,6 +21,7 @@ class App extends Component {
                 <Welcome name={i}/>
                 <Clock />
                 <Toggle />
+                <EssayForm />
             </div>
         );
     }
