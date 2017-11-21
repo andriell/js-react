@@ -9,6 +9,7 @@ class EssayForm extends React.Component {
         super(props);
         this.state = {
             value: 'Please write an essay about your favorite DOM element.',
+            select: '',
             items: [1, 2, 3],
         };
 
@@ -21,7 +22,7 @@ class EssayForm extends React.Component {
     }
 
     handleSubmit(event) {
-        this.state.items.push(this.state.value);
+        this.state.items.push(this.state.select + ':' + this.state.value);
         this.setState({items: this.state.items});
         event.preventDefault();
     }
@@ -37,17 +38,22 @@ class EssayForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <table>
                         <tr>
+                            <td>Value:</td>
+                            <td>{this.state.value}</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
                             <td>
-                                Value:
-                            </td>
-                            <td>
-                                {this.state.value}
+                                <select onChange={event => {
+                                    this.setState({select: event.target.value});
+                                }}>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                Name:
-                            </td>
+                            <td>Name:</td>
                             <td>
                                 <textarea value={this.state.value} onChange={this.handleChange} style={{width: '400px', height: '100px'}} />
                             </td>
